@@ -84,7 +84,7 @@ export const PRICING = {
     },
     {
       name: "Pro",
-      price: "$10",
+      price: "$25",
       features: [
         { label: "Chart skin pro", included: true },
         { label: "Premium lot calculator", note: "Life time", included: true },
