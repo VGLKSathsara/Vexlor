@@ -5,7 +5,7 @@ import { useEffect } from "react";
 // applies once `reveal-ready` is set on <html>).
 export default function useReveal() {
   useEffect(() => {
-    if (!("IntersectionObserver" in window)) return;
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const root = document.documentElement;
     const els = document.querySelectorAll("[data-reveal]");
 
@@ -21,8 +21,11 @@ export default function useReveal() {
       { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
     );
 
+    els.forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("is-in");
+      io.observe(el);
+    });
     root.classList.add("reveal-ready");
-    els.forEach((el) => io.observe(el));
     return () => {
       io.disconnect();
       root.classList.remove("reveal-ready");
