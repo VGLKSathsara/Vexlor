@@ -376,3 +376,45 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (hover: none) {
   .card:hover, .plan:hover, .social-btn:hover { transform: none; }
 }
+
+/* Premium motion: short, interruptible interactions; no new perpetual loops. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__title.rise { animation-name: title-arrive; animation-duration: .75s; }
+  @keyframes title-arrive {
+    from { opacity: 0; transform: translateY(22px) scale(.97); }
+    to { opacity: 1; transform: none; }
+  }
+  .reveal-ready [data-reveal] { transition-duration: .55s; }
+  .reveal-ready [data-reveal="zoom"] { scale: .94; }
+  .reveal-ready [data-reveal="zoom"].is-in, .reveal-ready [data-reveal="zoom"]:focus-within { scale: 1; }
+  .card, .plan, .stat { transition: transform .32s cubic-bezier(.2,.75,.25,1), box-shadow .25s ease, border-color .2s ease; }
+  .card__icon, .plan__price { transition: transform .3s var(--ease), background .2s ease, color .2s ease; }
+  .social-btn:active, .card__telegram:active, .burger:active { transform: scale(.94); }
+  @media (hover: hover) and (pointer: fine) {
+    .card--link:hover { transform: perspective(900px) translateY(-8px) rotateX(3deg) scale(1.015); }
+    .plan:hover { transform: translateY(-7px) scale(1.015); }
+    .plan--featured:hover { transform: translateY(-13px) scale(1.015); }
+    .plan:hover .plan__price { transform: translateY(-2px); }
+    .stat:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(20,20,20,.12); }
+    .hero__cta .btn:hover { transform: translateY(-3px) scale(1.025); }
+    .hero__cta .btn:active { transform: scale(.96); }
+  }
+  @media (max-width: 820px) {
+    .nav { transform-origin: top center; transform: translateY(-8px) scale(.97); }
+    .nav.is-open { transform: none; }
+    .nav.is-open .nav__link { animation: menu-arrive .28s var(--ease) both; }
+    .nav.is-open .nav__link:nth-of-type(2) { animation-delay: 30ms; }
+    .nav.is-open .nav__link:nth-of-type(3) { animation-delay: 60ms; }
+    .nav.is-open .nav__link:nth-of-type(4) { animation-delay: 90ms; }
+    @keyframes menu-arrive {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: none; }
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card:hover, .plan:hover, .social-btn:hover, .brand:hover .brand__mark,
+  .card:hover .card__icon, .card__telegram:hover, .btn:hover, .btn:active,
+  .btn:hover span[aria-hidden], .card--link:hover .card__cta span { transform: none; }
+  .plan--featured { transform: none; }
+}
