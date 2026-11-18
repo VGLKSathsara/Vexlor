@@ -19,7 +19,7 @@ export const HERO = {
 
 export const ABOUT = {
   title: "About Excellent.lk",
-  text: "Excellent.lk is a growing digital brand built around speed, clarity and quality. This section is a placeholder – replace it with your real story, mission and team.",
+  text: "Excellent.lk is a digital brand in Sri Lanka, bringing together tools and online services designed around speed, clarity and quality.",
   stats: [
     { value: "100+", label: "Projects" },
     { value: "50+", label: "Clients" },
