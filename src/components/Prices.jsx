@@ -1,12 +1,6 @@
 import { PRICING } from "../data/site.js";
 import Reveal from "./Reveal.jsx";
 
-// "Choose" buttons take the visitor to the contact links in the About section.
-const toContact = (e) => {
-  e.preventDefault();
-  document.getElementById("connect")?.scrollIntoView({ behavior: "smooth", block: "center" });
-};
-
 export default function Prices() {
   return (
     <section id="prices" className="section">
@@ -34,7 +28,6 @@ export default function Prices() {
                 </ul>
                 <a
                   href="#connect"
-                  onClick={toContact}
                   className={`btn ${p.featured ? "btn--primary" : "btn--dark"} btn--block`}
                 >
                   Choose {p.name}
