@@ -8,6 +8,7 @@ export default function Header({ active }) {
   const [anim, setAnim] = useState(false);
   const navRef = useRef(null);
   const barRef = useRef(null);
+  const headerRef = useRef(null);
   const menuButtonRef = useRef(null);
 
   // shadow + scroll progress bar
@@ -62,6 +63,22 @@ export default function Header({ active }) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event) => {
+      if (!headerRef.current?.contains(event.target)) setOpen(false);
+    };
+    const onResize = () => {
+      if (window.innerWidth > 820) setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [open]);
+
   const go = () => setOpen(false);
 
   const pillStyle = pill
@@ -69,7 +86,7 @@ export default function Header({ active }) {
     : undefined;
 
   return (
-    <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
+    <header ref={headerRef} className={`header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="progress" ref={barRef} aria-hidden="true" />
       <div className="header__bar">
         <a href="#home" className="brand" onClick={go} aria-label="Excellent.lk home">
