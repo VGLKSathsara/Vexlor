@@ -418,3 +418,24 @@ ul { margin: 0; padding: 0; list-style: none; }
   .btn:hover span[aria-hidden], .card--link:hover .card__cta span { transform: none; }
   .plan--featured { transform: none; }
 }
+
+/* Final responsive and keyboard polish */
+#main-content { scroll-margin-top: var(--header-h); }
+#connect { scroll-margin-top: calc(var(--header-h) + 16px); }
+@media (max-width: 820px) {
+  .nav__pill { display: none; }
+  .nav__link.is-active { background: var(--ink); color: #fff; }
+  .nav__link:focus-visible { outline-offset: -3px; }
+  .nav { max-height: min(70vh, 360px); overflow-y: auto; }
+}
+@media (max-width: 480px) {
+  .header__bar { width: 94%; }
+  .brand__text { font-size: 15px; }
+  .hero__title { letter-spacing: -1.3px; }
+  .hero__stage { width: 100%; }
+  .section__title { overflow-wrap: anywhere; }
+  .plan, .card { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav.is-open .nav__link, .hero__title.rise { animation: none !important; }
+}
