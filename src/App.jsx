@@ -16,8 +16,9 @@ export default function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Header active={active} />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <About />
         <Services />

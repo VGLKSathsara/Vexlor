@@ -8,6 +8,7 @@ export default function Header({ active }) {
   const [anim, setAnim] = useState(false);
   const navRef = useRef(null);
   const barRef = useRef(null);
+  const menuButtonRef = useRef(null);
 
   // shadow + scroll progress bar
   useEffect(() => {
@@ -51,16 +52,17 @@ export default function Header({ active }) {
 
   // close mobile menu with Escape
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    const onKey = (e) => {
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, []);
+  }, [open]);
 
-  const go = (e, id) => {
-    e.preventDefault();
-    setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  const go = () => setOpen(false);
 
   const pillStyle = pill
     ? { opacity: 1, width: pill.width, height: pill.height, transform: `translate(${pill.left}px, ${pill.top}px)` }
@@ -70,22 +72,22 @@ export default function Header({ active }) {
     <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="progress" ref={barRef} aria-hidden="true" />
       <div className="header__bar">
-        <a href="#home" className="brand" onClick={(e) => go(e, "home")} aria-label="Excellent.lk home">
+        <a href="#home" className="brand" onClick={go} aria-label="Excellent.lk home">
           <img src="/logo-mark.png" alt="" className="brand__mark" />
           <span className="brand__text">
             EXCELLENT<span className="brand__dot">.LK</span>
           </span>
         </a>
 
-        <nav ref={navRef} className={`nav ${open ? "is-open" : ""}`} aria-label="Main">
+        <nav id="main-navigation" ref={navRef} className={`nav ${open ? "is-open" : ""}`} aria-label="Main">
           <span className={`nav__pill ${anim ? "is-anim" : ""}`} style={pillStyle} aria-hidden="true" />
           {NAV.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              onClick={(e) => go(e, item.id)}
+              onClick={go}
               className={`nav__link ${active === item.id ? "is-active" : ""}`}
-              aria-current={active === item.id ? "page" : undefined}
+              aria-current={active === item.id ? "location" : undefined}
             >
               {item.label}
             </a>
@@ -93,7 +95,7 @@ export default function Header({ active }) {
         </nav>
 
         <div className="header__actions">
-          <a href="#prices" className="btn btn--dark" onClick={(e) => go(e, "prices")}>
+          <a href="#prices" className="btn btn--dark" onClick={go}>
             Get Started
           </a>
         </div>
@@ -101,7 +103,10 @@ export default function Header({ active }) {
         <button
           className={`burger ${open ? "is-open" : ""}`}
           onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
+          ref={menuButtonRef}
+          type="button"
+          aria-controls="main-navigation"
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
           <span /><span /><span />
