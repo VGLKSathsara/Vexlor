@@ -2,11 +2,6 @@ import { useEffect, useRef } from "react";
 import PaperWave from "./PaperWave.jsx";
 import { HERO } from "../data/site.js";
 
-const go = (e, id) => {
-  e.preventDefault();
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-};
-
 export default function Hero() {
   const ref = useRef(null);
 
@@ -84,10 +79,10 @@ export default function Hero() {
         <p className="hero__text rise" style={{ "--i": 2 }}>{HERO.text}</p>
 
         <div className="hero__cta rise" style={{ "--i": 3 }}>
-          <a href="#service" className="btn btn--primary" onClick={(e) => go(e, "service")}>
+          <a href="#service" className="btn btn--primary">
             Our Services <span aria-hidden="true">→</span>
           </a>
-          <a href="#about" className="btn btn--light" onClick={(e) => go(e, "about")}>
+          <a href="#about" className="btn btn--light">
             About Us <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -113,7 +108,7 @@ export default function Hero() {
         <span className="chip">✦</span>
       </div>
 
-      <a href="#about" className="hero__scroll rise" style={{ "--i": 6 }} onClick={(e) => go(e, "about")} aria-label="Scroll down to About">
+      <a href="#about" className="hero__scroll rise" style={{ "--i": 6 }} aria-label="Scroll down to About">
         <span className="hero__scroll-mouse"><i /></span>
       </a>
     </section>
