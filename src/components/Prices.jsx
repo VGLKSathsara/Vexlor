@@ -1,41 +1,73 @@
 import { PRICING } from "../data/site.js";
 import Reveal from "./Reveal.jsx";
 
+const formatPrice = (amount) => `$${amount.toFixed(2)}`;
+
 export default function Prices() {
+  const { offer } = PRICING;
+
   return (
-    <section id="prices" className="section">
+    <section id="prices" className="section pricing-section" aria-labelledby="pricing-title">
       <div className="container">
-        <Reveal>
-          <span className="eyebrow">Prices</span>
-          <h2 className="section__title">{PRICING.title}</h2>
+        <Reveal className="pricing-heading">
+          <span className="eyebrow">{PRICING.eyebrow}</span>
+          <h2 id="pricing-title" className="section__title">{PRICING.title}</h2>
+          <p className="section__text">{PRICING.description}</p>
         </Reveal>
 
-        <div className="grid grid--3" data-live>
-          {PRICING.plans.map((p, i) => (
-            <Reveal key={p.name} delay={i * 130} className="cell">
-              <article className={`plan ${p.featured ? "plan--featured" : ""}`}>
-                {p.badge && <span className="plan__badge">{p.badge}</span>}
-                <h3>{p.name}</h3>
-                <div className="plan__price">{p.price}</div>
-                <ul>
-                  {p.features.map((f) => (
-                    <li key={f.label} className={f.included ? "is-yes" : "is-no"}>
-                      <span className="sr-only">{f.included ? "Included: " : "Not included: "}</span>
-                      {f.label}
-                      {f.note && <em className="plan__note">({f.note})</em>}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#connect"
-                  className={`btn ${p.featured ? "btn--primary" : "btn--dark"} btn--block`}
-                >
-                  Choose {p.name}
-                </a>
-              </article>
-            </Reveal>
-          ))}
+        <div className="pricing-grid" data-live>
+          {PRICING.plans.map((plan, index) => {
+            const hasOffer = plan.featured && offer.active;
+            const price = hasOffer ? offer.promotionalPrice : plan.price;
+            const savings = hasOffer ? Math.round((1 - price / offer.regularPrice) * 100) : 0;
+
+            return (
+              <Reveal key={plan.name} delay={index * 100} className="pricing-cell">
+                <article className={`pricing-card${plan.featured ? " pricing-card--featured" : ""}`}>
+                  <div className="pricing-card__top">
+                    <span className="pricing-card__tier">{plan.featured ? "THE COMPLETE TOOLKIT" : "YOUR TOOLKIT"}</span>
+                    {hasOffer && <span className="pricing-card__badge">{offer.label}</span>}
+                  </div>
+                  <h3 className="pricing-card__name">{plan.name}</h3>
+                  <p className="pricing-card__subtitle">{plan.subtitle}</p>
+
+                  <div className="pricing-card__price-row">
+                    <span className="pricing-card__price">{formatPrice(price)}</span>
+                    {hasOffer && <span className="pricing-card__old-price">{formatPrice(offer.regularPrice)}</span>}
+                  </div>
+                  <p className="pricing-card__period">{plan.period}</p>
+                  {hasOffer && (
+                    <div className="pricing-card__offer">
+                      <span>Save {savings}% for a limited time</span>
+                      <span className="pricing-card__offer-sparkle" aria-hidden="true">✦</span>
+                    </div>
+                  )}
+
+                  <div className="pricing-card__divider" aria-hidden="true" />
+                  <p className="pricing-card__includes">What's included</p>
+                  <ul className="pricing-card__features">
+                    {plan.features.map((feature) => (
+                      <li key={feature.label} className={feature.included ? "pricing-feature" : "pricing-feature pricing-feature--excluded"}>
+                        <span className="pricing-feature__icon" aria-hidden="true">{feature.included ? "✓" : "–"}</span>
+                        <span>{feature.label}{feature.note && <strong className="pricing-feature__note">{feature.note}</strong>}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a className={`btn btn--block pricing-card__cta${plan.featured ? " pricing-card__cta--featured" : ""}`} href="#connect">
+                    {plan.cta}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                  <p className="pricing-card__footnote">{plan.featured ? "Forex + Crypto · Lifetime access" : plan.name === "Popular" ? "Select Forex or Crypto when contacting us" : "Chart Skin Pro only"}</p>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
+
+        <Reveal className="pricing-trust">
+          <span aria-hidden="true">✦</span> Clear plans. No confusing bundles. Choose what fits your trading.
+        </Reveal>
       </div>
     </section>
   );

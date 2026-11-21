@@ -60,35 +60,55 @@ export const SERVICES = [
   },
 ];
 
-// Price list. Each feature: { label, included, note? }  (included: true = tick, false = cross).
+// Pricing is intentionally centralized here so promotions can be switched off
+// without changing the layout. Set offer.active to false when the offer ends.
+// Access durations apply to Premium Lot Calculator, not Chart Skin Pro.
 export const PRICING = {
-  title: "Trade Tool Set",
+  eyebrow: "Simple, transparent pricing",
+  title: "The right tools. Your trading edge.",
+  description: "Start with a better-looking chart or unlock precision position sizing for your market.",
+  offer: {
+    active: true,
+    label: "YEAR END OFFER",
+    regularPrice: 14.99,
+    promotionalPrice: 9.99,
+  },
   plans: [
     {
       name: "Starter",
-      price: "$2",
+      subtitle: "Make every chart yours.",
+      price: 1.99,
+      period: "Chart Skin Pro access",
       features: [
-        { label: "Chart skin pro", included: true },
-        { label: "Premium lot calculator", included: false },
+        { label: "Chart Skin Pro", included: true },
+        { label: "Premium Lot Calculator", included: false },
       ],
+      cta: "Get Starter",
     },
     {
       name: "Popular",
-      badge: "Most popular",
-      price: "$5",
-      featured: true,
+      subtitle: "Focus on one market.",
+      price: 9.99,
+      period: "30 days of calculator access",
       features: [
-        { label: "Chart skin pro", included: true },
-        { label: "Premium lot calculator", note: "30 Day", included: true },
+        { label: "Forex OR Crypto calculator", included: true, note: "Choose one market" },
+        { label: "Chart Skin Pro", included: true, note: "FREE" },
+        { label: "Both markets included", included: false },
       ],
+      cta: "Choose your market",
     },
     {
-      name: "Pro",
-      price: "$25",
+      name: "Pro Bundle",
+      subtitle: "Everything you need. One price.",
+      price: 14.99,
+      featured: true,
+      period: "Lifetime calculator access",
       features: [
-        { label: "Chart skin pro", included: true },
-        { label: "Premium lot calculator", note: "Life time", included: true },
+        { label: "Forex calculator", included: true, note: "Lifetime" },
+        { label: "Crypto calculator", included: true, note: "Lifetime" },
+        { label: "Chart Skin Pro", included: true, note: "FREE" },
       ],
+      cta: "Unlock Pro Bundle",
     },
   ],
 };
