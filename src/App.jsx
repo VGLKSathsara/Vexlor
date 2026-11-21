@@ -4,6 +4,7 @@ import About from "./components/About.jsx";
 import Services from "./components/Services.jsx";
 import Prices from "./components/Prices.jsx";
 import Footer from "./components/Footer.jsx";
+import FloatingWhatsApp from "./components/FloatingWhatsApp.jsx";
 import useActiveSection from "./hooks/useActiveSection.js";
 import useReveal from "./hooks/useReveal.js";
 import useOffscreenPause from "./hooks/useOffscreenPause.js";
@@ -25,6 +26,7 @@ export default function App() {
         <Prices />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }
