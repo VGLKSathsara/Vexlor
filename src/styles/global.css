@@ -439,3 +439,87 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .nav.is-open .nav__link, .hero__title.rise { animation: none !important; }
 }
+
+
+/* ============ Premium pricing experience ============ */
+.pricing-section {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 68% 45% at 50% 4%, rgba(255, 106, 0, .075), transparent 82%), #fafafa;
+}
+.pricing-heading { text-align: center; max-width: 680px; margin-inline: auto; }
+.pricing-heading .section__title { margin-bottom: 14px; }
+.pricing-heading .section__text { margin-inline: auto; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; margin-top: 54px; }
+.pricing-cell { display: flex; min-width: 0; }
+.pricing-card {
+  position: relative; isolation: isolate; display: flex; flex-direction: column; width: 100%; min-width: 0%;
+  padding: 30px; border: 1px solid #e6e6e6; border-radius: 26px;
+  background: #fff; box-shadow: 0 12px 35px rgba(22, 22, 22, .035);
+  transition: transform .3s var(--ease), box-shadow .3s ease, border-color .3s ease;
+}
+.pricing-card:hover { transform: translateY(-7px); border-color: #ffb882; box-shadow: 0 22px 50px rgba(25, 25, 25, .09); }
+.pricing-card--featured {
+  background: linear-gradient(155deg, #211b18 0%, #141414 68%);
+  color: #fff; border-color: #ff8838; box-shadow: 0 18px 52px rgba(255, 106, 0, .18);
+}
+.pricing-card--featured::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: radial-gradient(circle at 88% 7%, rgba(255, 119, 26, .22), transparent 45%); pointer-events: none;
+}
+.pricing-card--featured:hover { border-color: var(--orange); box-shadow: 0 26px 60px rgba(255, 106, 0, .25); }
+.pricing-card__top { display: flex; justify-content: space-between; align-items: center; min-height: 28px; gap: 8px; }
+.pricing-card__tier { color: #8c8c8c; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; }
+.pricing-card--featured .pricing-card__tier { color: #ffbc8e; }
+.pricing-card__badge { padding: 7px 10px; border-radius: 999px; background: #ff7416; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .45px; white-space: nowrap; }
+.pricing-card__name { margin-top: 20px; font-size: 24px; font-weight: 750; letter-spacing: -.8px; }
+.pricing-card__subtitle { margin-top: 7px; color: #777; font-size: 13px; line-height: 1.5; }
+.pricing-card--featured .pricing-card__subtitle { color: #c7c1bc; }
+.pricing-card__price-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.pricing-card__price { font-size: clamp(38px, 3.6vw, 50px); font-weight: 800; letter-spacing: -2.4px; line-height: 1; font-variant-numeric: tabular-nums; }
+.pricing-card__old-price { color: #bcb1a9; text-decoration: line-through; text-decoration-thickness: 1.5px; font-size: 20px; font-weight: 600; }
+.pricing-card__period { font-size: 12px; color: #858585; margin-top: 10px; }
+.pricing-card--featured .pricing-card__period { color: #f4c3a2; }
+.pricing-card__offer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 17px; padding: 10px 13px; border: 1px solid rgba(255, 143, 60, .3); border-radius: 12px; background: rgba(255, 106, 0, .12); color: #ffbc8e; font-size: 12px; font-weight: 700; }
+.pricing-card__offer-sparkle { font-size: 18px; }
+.pricing-card__divider { height: 1px; background: #ececec; margin: 26px 0 22px; }
+.pricing-card--featured .pricing-card__divider { background: rgba(255,255,255,.17); }
+.pricing-card__includes { font-size: 12px; font-weight: 800; margin-bottom: 17px; }
+.pricing-card__features { display: grid; align-content: start; gap: 17px; flex: 1; margin-bottom: 32px; }
+.pricing-feature { display: flex; align-items: flex-start; gap: 11px; font-size: 13px; line-height: 1.5; color: #3e3e3e; }
+.pricing-card--featured .pricing-feature { color: #f8f8f8; }
+.pricing-feature__icon { flex: 0 0 21px; width: 21px; height: 21px; display: grid; place-items: center; border-radius: 50%; font-size: 12px; font-weight: 800; color: #d75600; background: #fff0e5; }
+.pricing-card--featured .pricing-feature__icon { background: rgba(255, 132, 46, .2); color: #ffae75; }
+.pricing-feature--excluded { color: #a1a1a1; }
+.pricing-feature--excluded .pricing-feature__icon { color: #aaa; background: #f2f2f2; }
+.pricing-feature__note { display: block; margin-top: 2px; font-size: 11px; font-weight: 800; color: #ca5400; }
+.pricing-card--featured .pricing-feature__note { color: #ffae75; }
+.pricing-card__cta { border-radius: 13px; padding: 15px 16px; background: #161616; color: #fff; justify-content: space-between; font-weight: 700; }
+.pricing-card__cta:hover { background: #303030; box-shadow: 0 9px 22px rgba(0,0,0,.15); }
+.pricing-card__cta--featured { background: #ff7416; color: #17110d; }
+.pricing-card__cta--featured:hover { background: #ff9043; box-shadow: 0 9px 25px rgba(255, 106, 0, .28); }
+.pricing-card__cta > span { font-size: 20px; font-weight: 400; line-height: 1; }
+.pricing-card__footnote { margin-top: 13px; color: #8c8c8c; font-size: 11px; line-height: 1.5; text-align: center; }
+.pricing-card--featured .pricing-card__footnote { color: #d4b5a1; }
+.pricing-trust { margin-top: 30px; text-align: center; font-size: 12px; color: #777; line-height: 1.6; }
+.pricing-trust span { color: #e66407; margin-right: 5px; }
+@media (max-width: 900px) {
+  .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pricing-cell:last-child { grid-column: 1 / -1; }
+  .pricing-cell:last-child .pricing-card { max-width: 600px; margin-inline: auto; }
+}
+@media (max-width: 600px) {
+  .pricing-grid { grid-template-columns: 1fr; margin-top: 32px; gap: 17px; }
+  .pricing-cell:last-child { grid-column: auto; }
+  .pricing-card { padding: 25px; border-radius: 22px; }
+  .pricing-card__name { margin-top: 12px; }
+  .pricing-card__price-row { margin-top: 22px; }
+  .pricing-card__features { margin-bottom: 26px; }
+  .pricing-trust { margin-top: 24px; }
+}
+@media (hover: none) {
+  .pricing-card:hover, .pricing-card--featured:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card, .pricing-card:hover, .pricing-card--featured:hover { transition: none; transform: none; }
+}
