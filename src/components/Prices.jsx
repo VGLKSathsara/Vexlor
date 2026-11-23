@@ -15,7 +15,7 @@ export default function Prices() {
           <p className="section__text">{PRICING.description}</p>
         </Reveal>
 
-        <div className="pricing-grid" data-live>
+        <div className="pricing-grid" data-live data-count={PRICING.plans.length}>
           {PRICING.plans.map((plan, index) => {
             const hasOffer = plan.featured && offer.active;
             const price = hasOffer ? offer.promotionalPrice : plan.price;
@@ -58,7 +58,7 @@ export default function Prices() {
                     {plan.cta}
                     <span aria-hidden="true">↗</span>
                   </a>
-                  <p className="pricing-card__footnote">{plan.featured ? "Forex + Crypto · Lifetime access" : plan.name === "Popular" ? "Select Forex or Crypto when contacting us" : "Chart Skin Pro only"}</p>
+                  <p className="pricing-card__footnote">{plan.footnote}</p>
                 </article>
               </Reveal>
             );
