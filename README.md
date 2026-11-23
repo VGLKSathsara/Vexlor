@@ -33,7 +33,7 @@ Requires Node 18+.
 | **Prices** | **Trade Tool Set** price list: Starter $1.99, Popular $9.99, Pro Bundle $14.99 (featured, with a toggleable year-end offer), each with ✓ / – features; CTAs scroll to the contact icons |
 | **Footer** | Brand + tagline, quick nav links, social icons, copyright and a "Back to top" link |
 | **Floating contact** | A persistent WhatsApp button (bottom-right, all sections) for a one-tap way to reach us |
-| **SEO basics** | `robots.txt`, `sitemap.xml`, canonical link, Open Graph / Twitter image tags |
+| **SEO basics** | `robots.txt`, `sitemap.xml`, canonical link, a dedicated 1200×630 social share image, `Organization` structured data (JSON-LD), a real favicon/app-icon set and web manifest |
 | **Animation** | Scroll reveal, count-up numbers, hover effects – all pause off-screen and switch off for `prefers-reduced-motion` |
 | **Performance** | Measured at 60 fps in a headless test browser (see [Performance](#performance-notes)) |
 
@@ -87,6 +87,15 @@ Almost everything is edited in **`src/data/site.js`** – no component changes n
 **Colours** are CSS variables at the top of `src/styles/global.css` (`:root`), matched to the logo:
 orange `#ff6a00` (main) · dark orange `#e24d00` · ink `#141414` · white.
 
+**Updating the favicon / app icons / social share image** – all generated from `public/logo-mark.png` and `public/logo.png` with Pillow (not a build step, just run once and commit the output):
+```python
+from PIL import Image
+src = Image.open("public/logo-mark.png").convert("RGBA")
+# pad to a square canvas on white, resize to each size, save favicon.ico / icon-192.png /
+# icon-512.png / apple-touch-icon.png; see git history of this file for the exact script.
+```
+If the logo changes, regenerate `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` and `social-share.png` the same way and keep their dimensions (180×180, 192×192, 512×512, 1200×630) unchanged so `index.html` and `site.webmanifest` don't need edits.
+
 ---
 
 ## Project structure
@@ -97,6 +106,13 @@ vite.config.js             Vite + React plugin
 public/
   logo-mark.png            fox emblem (transparent) – hero + header
   logo.png                 full logo with wordmark
+  social-share.png         1200×630 Open Graph / Twitter card image
+  favicon.ico              16/32/48/256 multi-size favicon
+  apple-touch-icon.png     180×180 icon for iOS home screen
+  icon-192.png, icon-512.png  PWA/manifest icons
+  site.webmanifest         web app manifest (name, icons, theme color)
+  robots.txt, sitemap.xml  crawler directives + the one indexed URL
+  googlef61b22950cb6cbb6.html  Google Search Console ownership proof
 src/
   main.jsx                 entry
   App.jsx                  assembles the page + global hooks
@@ -157,12 +173,13 @@ Work happens on a branch and goes to `main` through a pull request:
 | #11 | Hero corner text now "Sri Lanka"; new Trade Tool Set price list |
 | #12 | Third service: Kadadev Sadaluva |
 | #13 | Richer footer (quick links + socials + back-to-top), floating WhatsApp button, SEO basics (`robots.txt`, `sitemap.xml`, canonical + social image tags) |
+| #14 | Google Search Console ownership file |
+| #15 | Pro-level SEO: real favicon/app-icon set, web manifest, dedicated social share image, `Organization` structured data (JSON-LD), Apple/PWA meta tags |
 
 ## Roadmap ideas
 
 - Real About story and stats; confirm the middle plan's name (currently "Popular")
 - Contact section / contact form
 - More services (just add to `SERVICES`)
-- A dedicated 1200×630 social share image (current `og:image` reuses `logo.png`)
 - Real-device testing (iPhone Safari, Android Chrome, Firefox)
 - Login/accounts only once a backend exists
