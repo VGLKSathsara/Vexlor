@@ -30,7 +30,7 @@ Requires Node 18+.
 | **Hero** | Staggered entrance, floating fox logo with mouse parallax (desktop), orange paper-cut wave, static decorative rings, scroll-down hint |
 | **About** | Intro text, animated stats, **Connect with us** icon buttons (Telegram, WhatsApp, TikTok, Facebook) |
 | **Service** | Clickable service cards that open in a new tab (see [Services](#services-live)) |
-| **Prices** | **Trade Tool Set** price list: Starter $1.99, Popular $9.99, Pro Bundle $14.99 (featured, with a toggleable year-end offer), each with ✓ / – features; CTAs scroll to the contact icons |
+| **Prices** | **Trade Tool Set** price list: Starter $1.99 (Chart Skin Pro only), Standard $8.99 (one market, lifetime), Popular $9.99 (both markets, 30 days), Pro Bundle $14.99 (featured, both markets lifetime, with a toggleable year-end offer), each with ✓ / – features; CTAs scroll to the contact icons |
 | **Footer** | Brand + tagline, quick nav links, social icons, copyright and a "Back to top" link |
 | **Floating contact** | A persistent WhatsApp button (bottom-right, all sections) for a one-tap way to reach us |
 | **SEO basics** | `robots.txt`, `sitemap.xml`, canonical link, Open Graph / Twitter image tags |
@@ -157,10 +157,11 @@ Work happens on a branch and goes to `main` through a pull request:
 | #11 | Hero corner text now "Sri Lanka"; new Trade Tool Set price list |
 | #12 | Third service: Kadadev Sadaluva |
 | #13 | Richer footer (quick links + socials + back-to-top), floating WhatsApp button, SEO basics (`robots.txt`, `sitemap.xml`, canonical + social image tags) |
+| #14 | New "Standard" plan ($8.99, one market, lifetime); Popular's calculator changed from "Forex OR Crypto" to "Forex AND Crypto" (both markets, 30 days); pricing grid is now 4-up on desktop |
 
 ## Roadmap ideas
 
-- Real About story and stats; confirm the middle plan's name (currently "Popular")
+- Real About story and stats
 - Contact section / contact form
 - More services (just add to `SERVICES`)
 - A dedicated 1200×630 social share image (current `og:image` reuses `logo.png`)
