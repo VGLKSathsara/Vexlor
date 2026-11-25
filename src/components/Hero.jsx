@@ -1,6 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PaperWave from "./PaperWave.jsx";
 import { HERO } from "../data/site.js";
+
+// Cycles through one word at a time instead of showing them all joined in a
+// row, so the badge stays a single punchy word rather than a meta-string.
+function RotatingWord({ words, interval = 2000 }) {
+  const [i, setI] = useState(0);
+
+  useEffect(() => {
+    if (words.length < 2) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return; // keep the first word static, no auto-changing content
+    const id = setInterval(() => setI((v) => (v + 1) % words.length), interval);
+    return () => clearInterval(id);
+  }, [words, interval]);
+
+  return (
+    <span className="pill__rotator">
+      <span key={i} className="pill__word">{words[i]}</span>
+    </span>
+  );
+}
 
 export default function Hero() {
   const ref = useRef(null);
@@ -66,7 +86,7 @@ export default function Hero() {
 
       <div className="hero__inner">
         <span className="pill rise" style={{ "--i": 0 }}>
-          <i className="pill__dot" /> {HERO.badge}
+          <i className="pill__dot" /> <RotatingWord words={HERO.badgeWords} />
         </span>
 
         <h1 className="hero__title rise" style={{ "--i": 1 }}>
