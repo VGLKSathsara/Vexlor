@@ -88,24 +88,14 @@ export default function Hero() {
         </div>
 
         <div className="hero__stage rise" style={{ "--i": 4 }} aria-hidden="true">
-          <span className="ring ring--1" />
-          <span className="ring ring--2" />
-          <span className="hero__glow" />
           <img src="/logo-mark.png" alt="" className="hero__logo" width="640" height="519" data-depth="-16,-10" />
           <span className="hero__shadow" />
-          <span className="hex hex--1" data-depth="28,18" />
-          <span className="hex hex--2" data-depth="-32,-20" />
-          <span className="hex hex--3" data-depth="20,-14" />
         </div>
       </div>
 
       <div className="hero__corner hero__corner--left rise" style={{ "--i": 5 }}>
         <span className="hero__corner-icon">★</span>
         <span>Sri Lanka</span>
-      </div>
-      <div className="hero__corner hero__corner--right rise" style={{ "--i": 5 }}>
-        <span className="chip">⚡</span>
-        <span className="chip">✦</span>
       </div>
 
       <a href="#about" className="hero__scroll rise" style={{ "--i": 6 }} aria-label="Scroll down to About">

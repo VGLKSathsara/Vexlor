@@ -10,7 +10,7 @@ export const NAV = [
 export const SECTION_IDS = NAV.map((n) => n.id);
 
 export const HERO = {
-  badge: "Fast · Smart · Reliable",
+  badge: "Trading tools, sweets & a guesthouse — one fox mark",
   titleTop: "Welcome to",
   titleBrand: "Excellent",
   titleExt: ".lk",
