@@ -176,6 +176,10 @@ Work happens on a branch and goes to `main` through a pull request:
 | #14 | Google Search Console ownership file |
 | #15 | Pro-level SEO: real favicon/app-icon set, web manifest, dedicated social share image, `Organization` structured data (JSON-LD), Apple/PWA meta tags |
 | #16 | New "Standard" plan ($8.99, one market, lifetime); Popular's calculator changed from "Forex OR Crypto" to "Forex AND Crypto" (both markets, 30 days); pricing grid is now 4-up on desktop |
+| #17 | Richer footer, floating WhatsApp button, SEO basics |
+| #18 | Pro-level SEO: real icon set, manifest, social card, structured data |
+| #19 | Added Standard plan; Popular bundles both markets |
+| #20 | "Paper and ember" premium redesign: warm paper-toned palette tied to the hero's paper-cut wave, locked brand orange + an espresso-ink dark; About rebuilt as a quiet intro + inline stat strip; Services rebuilt as a dark editorial showcase with bespoke per-venture SVG motifs (chart line, sweets, guesthouse gate); Pricing chrome decluttered (dropped the all-caps eyebrow/tier labels, recolored to match); Header/Footer retoned; removed a large amount of now-dead CSS left over from the old card-grid system |
 
 ## Roadmap ideas
 

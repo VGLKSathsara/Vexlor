@@ -10,7 +10,6 @@ export default function Prices() {
     <section id="prices" className="section pricing-section" aria-labelledby="pricing-title">
       <div className="container">
         <Reveal className="pricing-heading">
-          <span className="eyebrow">{PRICING.eyebrow}</span>
           <h2 id="pricing-title" className="section__title">{PRICING.title}</h2>
           <p className="section__text">{PRICING.description}</p>
         </Reveal>
@@ -24,10 +23,11 @@ export default function Prices() {
             return (
               <Reveal key={plan.name} delay={index * 100} className="pricing-cell">
                 <article className={`pricing-card${plan.featured ? " pricing-card--featured" : ""}`}>
-                  <div className="pricing-card__top">
-                    <span className="pricing-card__tier">{plan.featured ? "THE COMPLETE TOOLKIT" : "YOUR TOOLKIT"}</span>
-                    {hasOffer && <span className="pricing-card__badge">{offer.label}</span>}
-                  </div>
+                  {hasOffer && (
+                    <div className="pricing-card__top">
+                      <span className="pricing-card__badge">{offer.label}</span>
+                    </div>
+                  )}
                   <h3 className="pricing-card__name">{plan.name}</h3>
                   <p className="pricing-card__subtitle">{plan.subtitle}</p>
 

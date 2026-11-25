@@ -46,44 +46,41 @@ export default function About() {
   return (
     <section id="about" className="section">
       <div className="container about">
-        <div className="about__main">
-          <Reveal>
-            <span className="eyebrow">About</span>
-            <h2 className="section__title">{ABOUT.title}</h2>
-            <p className="section__text">{ABOUT.text}</p>
-          </Reveal>
+        <Reveal className="about__intro">
+          <h2 className="section__title">{ABOUT.title}</h2>
+          <p className="section__text">{ABOUT.text}</p>
+        </Reveal>
 
-          <div id="connect" className="connect">
-            <Reveal delay={120}>
-              <h3 className="connect__title">Connect with us</h3>
-            </Reveal>
-            <ul className="connect__list">
-              {ABOUT.socials.map((s, i) => (
-                <Reveal as="li" variant="zoom" delay={200 + i * 90} key={s.id}>
-                  <a
-                    href={s.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`social-btn social-btn--${s.id}`}
-                    aria-label={`${s.label}: ${s.handle}`}
-                    title={`${s.label} – ${s.handle}`}
-                  >
-                    <SocialIcon name={s.id} />
-                  </a>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
+        <div id="connect" className="connect">
+          <Reveal delay={90}>
+            <h3 className="connect__title">Connect with us</h3>
+          </Reveal>
+          <ul className="connect__list">
+            {ABOUT.socials.map((s, i) => (
+              <Reveal as="li" variant="zoom" delay={160 + i * 90} key={s.id}>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`social-btn social-btn--${s.id}`}
+                  aria-label={`${s.label}: ${s.handle}`}
+                  title={`${s.label} – ${s.handle}`}
+                >
+                  <SocialIcon name={s.id} />
+                </a>
+              </Reveal>
+            ))}
+          </ul>
         </div>
 
-        <ul className="stats">
-          {ABOUT.stats.map((s, i) => (
-            <Reveal as="li" variant="zoom" delay={i * 130} key={s.label} className="stat">
+        <Reveal as="ul" delay={120} className="stats">
+          {ABOUT.stats.map((s) => (
+            <li key={s.label} className="stat">
               <strong><CountUp value={s.value} /></strong>
               <span>{s.label}</span>
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </Reveal>
       </div>
     </section>
   );

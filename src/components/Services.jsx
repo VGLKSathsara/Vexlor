@@ -1,24 +1,56 @@
 import { SERVICES } from "../data/site.js";
 import Reveal from "./Reveal.jsx";
 
-const ICONS = {
+// Each venture gets its own small motif tied to what it actually is, instead of
+// a generic icon-in-a-circle repeated three times: a rising price line for the
+// trading tool, a tray of sweets for the shop, a temple gateway for the
+// guesthouse near the Devalaya.
+const MOTIFS = {
   calculator: (
-    <>
-      <rect x="5" y="3" width="14" height="18" rx="2" />
-      <path d="M8 7h8M8 12h2M12 12h2M16 12h0M8 16h2M12 16h2M16 16h0" />
-    </>
-  ),
-  stay: (
-    <>
-      <path d="M3 20V6M3 12h18v8M21 12V9a2 2 0 0 0-2-2h-8v5" />
-      <circle cx="7" cy="9.5" r="1.6" />
-    </>
+    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+      <path d="M8 60h2M8 44h2M8 28h2" stroke="currentColor" strokeOpacity=".35" strokeWidth="1.5" strokeLinecap="round" />
+      <g stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <path d="M22 54v-14M22 47h0" />
+        <path d="M38 58v-30M38 43h0" />
+        <path d="M54 50v-10M54 45h0" />
+        <path d="M70 62v-38M70 43h0" />
+        <path d="M86 46v-8M86 42h0" />
+      </g>
+      <g stroke="currentColor" strokeWidth="5" strokeLinecap="round">
+        <path d="M22 44v6" />
+        <path d="M38 36v14" />
+        <path d="M54 38v14" />
+        <path d="M70 30v20" />
+        <path d="M86 34v10" />
+      </g>
+      <path d="M16 52 L34 34 L50 40 L66 18 L82 30 L100 14" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="100" cy="14" r="3.5" fill="var(--orange)" />
+    </svg>
   ),
   gift: (
-    <>
-      <rect x="3" y="8" width="18" height="4" rx="1" />
-      <path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-4-5.5-4-5.5-1.5S10 8 12 8zM12 8c1.5-4 5.5-4 5.5-1.5S14 8 12 8z" />
-    </>
+    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+      <path d="M12 58c20 10 76 10 96 0" stroke="currentColor" strokeOpacity=".35" strokeWidth="1.5" strokeLinecap="round" />
+      <g stroke="currentColor" strokeWidth="2">
+        <circle cx="30" cy="42" r="12" />
+        <circle cx="60" cy="34" r="15" />
+        <circle cx="91" cy="44" r="11" />
+      </g>
+      <g fill="var(--orange)">
+        <circle cx="30" cy="42" r="3" />
+        <circle cx="60" cy="34" r="3.4" />
+        <circle cx="91" cy="44" r="2.8" />
+      </g>
+      <path d="M24 30c3-5 9-5 12 0M53 22c4-6 11-6 15 0M85 33c3-4.5 8-4.5 11 0" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  ),
+  stay: (
+    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+      <path d="M10 64h100" stroke="currentColor" strokeOpacity=".35" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M38 64V38c0-12.15 9.85-22 22-22s22 9.85 22 22v26" stroke="currentColor" strokeWidth="2" />
+      <path d="M54 64V48a6 6 0 0 1 12 0v16" stroke="var(--orange)" strokeWidth="2.5" />
+      <path d="M30 64V46M90 64V46" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M60 16v-8M56 10h8" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" />
+    </svg>
   ),
 };
 
@@ -32,43 +64,39 @@ function TelegramIcon() {
 
 export default function Services() {
   return (
-    <section id="service" className="section section--tint">
+    <section id="service" className="section services">
       <div className="container">
         <Reveal>
-          <span className="eyebrow">Service</span>
-          <h2 className="section__title">Our services</h2>
+          <h2 className="section__title services__title">Our services</h2>
         </Reveal>
 
-        <div className="grid grid--services" data-live>
+        <div className="service-list" data-live>
           {SERVICES.map((s, i) => (
-            <Reveal key={s.title} delay={i * 130} className="cell">
-              <article className="card card--link">
-                <span className="card__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    {ICONS[s.icon]}
-                  </svg>
-                </span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
+            <Reveal key={s.title} delay={i * 110} className="service-row">
+              <span className="service-row__motif">{MOTIFS[s.icon]}</span>
 
-                {/* Whole card is clickable via this link (stretched with CSS) */}
-                <a href={s.url} target="_blank" rel="noopener noreferrer" className="card__cta card__stretch">
-                  {s.cta} <span aria-hidden="true">↗</span>
+              <span className="service-row__body">
+                <h3 className="service-row__title">{s.title}</h3>
+                <p className="service-row__text">{s.text}</p>
+              </span>
+
+              {/* Whole row is clickable via this link (stretched with CSS) */}
+              <a href={s.url} target="_blank" rel="noopener noreferrer" className="service-row__cta service-row__stretch">
+                {s.cta} <span aria-hidden="true">↗</span>
+              </a>
+
+              {s.telegram && (
+                <a
+                  href={s.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="service-row__telegram"
+                  aria-label={`${s.title} on Telegram`}
+                  title="Join on Telegram"
+                >
+                  <TelegramIcon />
                 </a>
-
-                {s.telegram && (
-                  <a
-                    href={s.telegram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="card__telegram"
-                    aria-label={`${s.title} on Telegram`}
-                    title="Join on Telegram"
-                  >
-                    <TelegramIcon />
-                  </a>
-                )}
-              </article>
+              )}
             </Reveal>
           ))}
         </div>
