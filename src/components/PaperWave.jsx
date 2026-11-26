@@ -11,20 +11,20 @@
 const LAYERS = [
   {
     n: 1,
-    from: "#ff8a2a",
-    to: "#c43e00",
+    from: "#F8C79F",
+    to: "#C4773A",
     d: "M600 0 L250 0 C330 90 270 160 330 250 C390 340 300 380 340 470 C380 560 300 620 360 720 C390 770 450 790 600 800 Z",
   },
   {
     n: 2,
-    from: "#ff7a14",
-    to: "#e24d00",
+    from: "#F4A261",
+    to: "#D98B50",
     d: "M600 0 L320 0 C390 80 340 150 395 235 C450 320 375 370 410 450 C445 530 380 590 430 680 C455 725 500 765 600 780 Z",
   },
   {
     n: 3,
-    from: "#ff9a45",
-    to: "#ff6a00",
+    from: "#FFD9BB",
+    to: "#F4A261",
     d: "M600 0 L390 0 C445 70 410 135 455 210 C500 285 440 335 468 410 C496 485 450 540 490 620 C510 660 545 700 600 715 Z",
     edge: "M390 0 C445 70 410 135 455 210 C500 285 440 335 468 410 C496 485 450 540 490 620 C510 660 545 700 600 715",
   },
@@ -54,7 +54,7 @@ export default function PaperWave({ className = "" }) {
             </linearGradient>
           </defs>
           {SHADOWS.map((s) => (
-            <path key={s.dx} d={l.d} fill="#7a2e00" fillOpacity={s.o} transform={`translate(${s.dx} ${s.dy})`} />
+            <path key={s.dx} d={l.d} fill="#8A542F" fillOpacity={s.o} transform={`translate(${s.dx} ${s.dy})`} />
           ))}
           <path d={l.d} fill={`url(#pw-g${l.n})`} />
           {l.edge && <path d={l.edge} fill="none" stroke="#fff" strokeOpacity="0.35" strokeWidth="2" />}
