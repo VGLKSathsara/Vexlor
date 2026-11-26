@@ -570,3 +570,46 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer__bottom { border-color: #444; }
 @media (max-width: 480px) { .hero__title { letter-spacing: -.035em; } }
 @media (prefers-reduced-motion: reduce) { .service-row:hover { padding-left: 0; } }
+
+/* Vexlor identity v2 — shared semantic surfaces and responsive layout */
+:root{--orange:#82D7D0;--orange-600:#2F7D76;--orange-hover:#9FE3DC;--orange-100:#E2F5F2;--ink:#1C2B2A;--ink-2:#344745;--muted:#5B6B69;--bg:#F5FAF9;--paper-deep:#E8F3F1;--white:#FFFFFF;--line:#D8E8E5;--font-brand:"Poppins",var(--font);--radius:16px;--shadow:0 8px 24px rgba(28,43,42,.07)}
+:root[data-theme="dark"]{color-scheme:dark;--ink:#EAF5F3;--ink-2:#C6D9D6;--muted:#9FB3B0;--bg:#0F1A19;--paper-deep:#203330;--white:#16221F;--line:#354744;--orange-600:#82D7D0;--orange-100:#263E39;--shadow:none}
+h1,h2,h3{font-family:var(--font-brand);font-weight:600}
+.brand__text{font-style:normal;font-weight:700;font-size:23px;letter-spacing:-1px}
+.brand:hover .brand__mark{transform:none}
+.header__bar,.is-scrolled .header__bar{background:var(--white);border-color:var(--line);border-radius:16px;grid-template-columns:1fr auto auto auto;box-shadow:var(--shadow)}
+.theme-toggle{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--white);color:var(--ink);font-size:22px}
+.btn{border-radius:10px;min-height:44px;box-shadow:none}
+.btn--primary,.btn--primary:hover{background:#82D7D0;color:#1C2B2A;box-shadow:none}
+.btn--dark,.btn--dark:hover,.nav__pill{background:#1C2B2A;color:#fff}
+.btn--light,.btn--light:hover{background:var(--white);color:var(--ink)}
+.btn::before{display:none}
+.hero{background:var(--bg);min-height: min(780px,100svh);padding:150px 0 80px;align-items:center}
+.hero::before{display:none}
+.vex-hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:56px}
+.vex-eyebrow{font-size:12px;font-weight:700;letter-spacing:.15em;color:var(--orange-600);margin-bottom:24px}
+.vex-copy h1{font-size:clamp(42px,6vw,76px);line-height:1.08;letter-spacing:-.055em}
+.vex-copy h1 span{color:var(--orange-600)}
+.vex-description{max-width:500px;margin-top:24px;line-height:1.75;color:var(--muted);font-size:17px}
+.vex-copy .hero__cta{justify-content:flex-start}
+.vex-art{position:relative;overflow:hidden;aspect-ratio:1;display:grid;place-items:center;border-radius:24px;background:#1C2B2A;border:1px solid #354744}
+.vex-art img{position:relative;width:65%;height:auto;z-index:1}
+.vex-grid{position:absolute;inset:0;background:linear-gradient(135deg,transparent 50%,#82D7D018 50%,#82D7D018 65%,transparent 65%),linear-gradient(#82D7D012 1px,transparent 1px),linear-gradient(90deg,#82D7D012 1px,transparent 1px);background-size:auto,32px 32px,32px 32px}
+.vex-art>span{position:absolute;bottom:24px;left:24px;color:#82D7D0;font-size:10px;letter-spacing:.12em}
+.section{padding:88px 0}
+.about{background:transparent}
+.services{background:#1C2B2A;color:#F5FAF9}
+.services .section__title{color:#F5FAF9}
+.service-row{border-radius:16px}
+.pricing-section{background:var(--bg)}
+.pricing-card{background:var(--white);border:1px solid var(--line);border-radius:16px;color:var(--ink);box-shadow:var(--shadow)}
+.pricing-card--featured{background:#1C2B2A;color:#F5FAF9;border-color:#82D7D0}
+.pricing-card--featured .pricing-feature__note,.pricing-card--featured .pricing-feature__icon,.pricing-card--featured .pricing-card__footnote,.pricing-card--featured .pricing-card__old-price{color:#82D7D0}
+.pricing-card__cta{background:#1C2B2A;color:#fff}
+.pricing-card__cta--featured,.pricing-card__cta--featured:hover{background:#82D7D0;color:#1C2B2A}
+.footer{background:#1C2B2A;color:#F5FAF9}
+.footer .brand__text,.footer__link,.footer__top{color:#F5FAF9}
+.footer__tagline,.footer small{color:#9FB3B0}
+:focus-visible{outline-color:var(--orange-600)}
+@media(max-width:820px){.header__bar,.is-scrolled .header__bar{grid-template-columns:1fr auto auto}.header__actions{display:none}.nav{background:var(--white);border-color:var(--line)}.vex-hero{grid-template-columns:1fr;gap:36px}.hero{padding:120px 0 56px;min-height:auto}.vex-art{max-width:440px;width:100%;margin:auto}.section{padding:64px 0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

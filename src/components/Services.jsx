@@ -67,7 +67,7 @@ export default function Services() {
     <section id="service" className="section services">
       <div className="container">
         <Reveal>
-          <h2 className="section__title services__title">Our services</h2>
+          <h2 className="section__title services__title">Explore our services</h2>
         </Reveal>
 
         <div className="service-list" data-live>
