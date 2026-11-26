@@ -27,7 +27,7 @@ export const ABOUT = {
   ],
   // Shown as "Connect with us" in the About section.
   socials: [
-    { id: "telegram", label: "Telegram", handle: "@excellent_lk", url: "https://t.me/excellent_lk" },
+    { id: "telegram", label: "Telegram", handle: "@Vexlorlk", url: "https://t.me/vexlor_lk" },
     { id: "whatsapp", label: "WhatsApp", handle: "+94 70 371 4386", url: "https://wa.me/94703714386" },
     { id: "tiktok", label: "TikTok", handle: "@excellentlk", url: "https://www.tiktok.com/@excellentlk" },
     { id: "facebook", label: "Facebook", handle: "Follow our page", url: "https://www.facebook.com/share/1ECv43UeP1/" },
