@@ -1,126 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import PaperWave from "./PaperWave.jsx";
 import { HERO } from "../data/site.js";
-
-// Cycles through one word at a time instead of showing them all joined in a
-// row, so the badge stays a single punchy word rather than a meta-string.
-function RotatingWord({ words, interval = 2000 }) {
-  const [i, setI] = useState(0);
-
-  useEffect(() => {
-    if (words.length < 2) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return; // keep the first word static, no auto-changing content
-    const id = setInterval(() => setI((v) => (v + 1) % words.length), interval);
-    return () => clearInterval(id);
-  }, [words, interval]);
-
-  return (
-    <span className="pill__rotator">
-      <span key={i} className="pill__word">{words[i]}</span>
-    </span>
-  );
-}
-
 export default function Hero() {
-  const ref = useRef(null);
-
-  // Mouse parallax (desktop only). Smooth easing loop that moves only the few
-  // elements marked with data-depth="dx,dy[,baseX,baseY]" using the GPU-friendly
-  // `translate` property. It stops by itself once everything has settled, so it
-  // costs nothing while the mouse is still.
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!fine || reduce) return;
-
-    const items = [...el.querySelectorAll("[data-depth]")].map((node) => {
-      const [dx, dy, bx = 0, by = 0] = node.dataset.depth.split(",").map(Number);
-      return { node, dx, dy, bx, by, x: bx, y: by };
-    });
-
-    let tx = 0, ty = 0, raf = 0, running = false;
-    const frame = () => {
-      let moving = false;
-      for (const it of items) {
-        const gx = it.bx + tx * it.dx;
-        const gy = it.by + ty * it.dy;
-        it.x += (gx - it.x) * 0.08;
-        it.y += (gy - it.y) * 0.08;
-        if (Math.abs(gx - it.x) > 0.04 || Math.abs(gy - it.y) > 0.04) moving = true;
-        it.node.style.translate = `${it.x.toFixed(2)}px ${it.y.toFixed(2)}px`;
-      }
-      running = moving;
-      raf = moving ? requestAnimationFrame(frame) : 0;
-    };
-    const kick = () => {
-      if (!running) {
-        running = true;
-        raf = requestAnimationFrame(frame);
-      }
-    };
-    const onMove = (e) => {
-      tx = (e.clientX / window.innerWidth - 0.5) * 2;
-      ty = (e.clientY / window.innerHeight - 0.5) * 2;
-      kick();
-    };
-    const onLeave = () => {
-      tx = 0;
-      ty = 0;
-      kick();
-    };
-    el.addEventListener("mousemove", onMove, { passive: true });
-    el.addEventListener("mouseleave", onLeave);
-    return () => {
-      cancelAnimationFrame(raf);
-      el.removeEventListener("mousemove", onMove);
-      el.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
-
-  return (
-    <section id="home" className="hero" ref={ref} data-live>
-      <PaperWave />
-
-      <div className="hero__inner">
-        <span className="pill rise" style={{ "--i": 0 }}>
-          <i className="pill__dot" /> <RotatingWord words={HERO.badgeWords} />
-        </span>
-
-        <h1 className="hero__title rise" style={{ "--i": 1 }}>
-          {HERO.titleTop}{" "}
-          <span className="hero__brand">
-            {HERO.titleBrand}
-            <span className="hero__ext">{HERO.titleExt}</span>
-          </span>
-        </h1>
-        <p className="hero__text rise" style={{ "--i": 2 }}>{HERO.text}</p>
-
-        <div className="hero__cta rise" style={{ "--i": 3 }}>
-          <a href="#service" className="btn btn--primary">
-            Our Services <span aria-hidden="true">→</span>
-          </a>
-          <a href="#about" className="btn btn--light">
-            About Us <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div className="hero__stage rise" style={{ "--i": 4 }} aria-hidden="true">
-          <img src="/logo-mark.png" alt="" className="hero__logo" width="640" height="519" data-depth="-16,-10" />
-          <span className="hero__shadow" />
-        </div>
+  return <section id="home" className="hero">
+    <div className="container vex-hero">
+      <div className="vex-copy">
+        <p className="vex-eyebrow">VEXLOR / PRECISION IN MOTION</p>
+        <h1>{HERO.titleTop}<br/><span>{HERO.titleBrand}</span></h1>
+        <p className="vex-description">{HERO.text}</p>
+        <div className="hero__cta"><a className="btn btn--primary" href="#service">Explore services <span aria-hidden="true">↗</span></a><a className="btn btn--light" href="#prices">View pricing</a></div>
       </div>
-
-      <div className="hero__corner hero__corner--left rise" style={{ "--i": 5 }}>
-        <span className="hero__corner-icon">★</span>
-        <span>Sri Lanka</span>
-      </div>
-
-      <a href="#about" className="hero__scroll rise" style={{ "--i": 6 }} aria-label="Scroll down to About">
-        <span className="hero__scroll-mouse"><i /></span>
-      </a>
-    </section>
-  );
+      <div className="vex-art" aria-hidden="true"><div className="vex-grid"/><img src="/vexlor-mark.svg" alt="" width="240" height="240"/><span>01 / DESIGNED FOR PROGRESS</span></div>
+    </div>
+  </section>;
 }

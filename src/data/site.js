@@ -3,7 +3,7 @@
 export const NAV = [
   { id: "home", label: "HOME" },
   { id: "about", label: "ABOUT" },
-  { id: "service", label: "SERVICE" },
+  { id: "service", label: "SERVICES" },
   { id: "prices", label: "PRICES" },
 ];
 
@@ -11,15 +11,15 @@ export const SECTION_IDS = NAV.map((n) => n.id);
 
 export const HERO = {
   badgeWords: ["Fast", "Smart", "Reliable"],
-  titleTop: "Welcome to",
-  titleBrand: "Excellent",
-  titleExt: ".lk",
-  text: "Your digital partner in Sri Lanka. We build, grow and support your online presence with speed and precision.",
+  titleTop: "Move forward.",
+  titleBrand: "Stay precise.",
+  titleExt: "",
+  text: "Discover digital tools, online shopping and local stays. Built around clarity, quality and progress.",
 };
 
 export const ABOUT = {
-  title: "About Excellent.lk",
-  text: "Excellent.lk is a digital brand in Sri Lanka, bringing together tools and online services designed around speed, clarity and quality.",
+  title: "About Vexlor",
+  text: "Vexlor is a digital brand in Sri Lanka, bringing together tools and online services designed around speed, clarity and quality.",
   stats: [
     { value: "100+", label: "Projects" },
     { value: "50+", label: "Clients" },

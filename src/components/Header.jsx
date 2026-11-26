@@ -3,6 +3,13 @@ import { NAV } from "../data/site.js";
 
 export default function Header({ active }) {
   const [open, setOpen] = useState(false);
+  const [dark, setDark] = useState(() => {
+    try { return localStorage.getItem("vexlor-theme") === "dark"; } catch { return false; }
+  });
+  useEffect(() => {
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    try { localStorage.setItem("vexlor-theme", dark ? "dark" : "light"); } catch {}
+  }, [dark]);
   const [scrolled, setScrolled] = useState(false);
   const [pill, setPill] = useState(null);
   const [anim, setAnim] = useState(false);
@@ -89,10 +96,10 @@ export default function Header({ active }) {
     <header ref={headerRef} className={`header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="progress" ref={barRef} aria-hidden="true" />
       <div className="header__bar">
-        <a href="#home" className="brand" onClick={go} aria-label="Excellent.lk home">
-          <img src="/logo-mark.png" alt="" className="brand__mark" />
+        <a href="#home" className="brand" onClick={go} aria-label="Vexlor home">
+          <img src="/vexlor-mark.svg" alt="" className="brand__mark" />
           <span className="brand__text">
-            EXCELLENT<span className="brand__dot">.LK</span>
+            vexlor
           </span>
         </a>
 
@@ -117,6 +124,7 @@ export default function Header({ active }) {
           </a>
         </div>
 
+        <button className="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed={dark} onClick={() => setDark(v => !v)}>{dark ? "☀" : "☾"}</button>
         <button
           className={`burger ${open ? "is-open" : ""}`}
           onClick={() => setOpen((v) => !v)}

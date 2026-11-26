@@ -6,12 +6,12 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
-          <a href="#home" className="brand" aria-label="Excellent.lk home">
-            <span className="brand__text">
-              EXCELLENT<span className="brand__dot">.LK</span>
+          <a href="#home" className="brand" aria-label="Vexlor home">
+            <img src="/vexlor-mark.svg" alt="" className="brand__mark" /><span className="brand__text">
+              vexlor
             </span>
           </a>
-          <p className="footer__tagline">Your digital partner in Sri Lanka.</p>
+          <p className="footer__tagline">Precision in Motion. · Sri Lanka</p>
         </div>
 
         <nav className="footer__nav" aria-label="Footer">
@@ -41,7 +41,7 @@ export default function Footer() {
       </div>
 
       <div className="container footer__bottom">
-        <small>© {new Date().getFullYear()} Excellent.lk. All rights reserved.</small>
+        <small>© {new Date().getFullYear()} Vexlor. All rights reserved.</small>
         <a href="#home" className="footer__top">
           Back to top <span aria-hidden="true">↑</span>
         </a>
